@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Leaf, Sparkles, Heart, Droplets, Zap, ShieldCheck } from "lucide-react";
+import { ArrowRight, Leaf, Sparkles, Heart, Droplets, Zap, ShieldCheck, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import ProductCard from "@/components/ProductCard";
@@ -79,6 +79,29 @@ const Index = () => {
               ✦ {t.toUpperCase()}
             </span>
           ))}
+        </div>
+      </section>
+
+      {/* Brand introduction — the approved "It's Really a Lifestyle." copy */}
+      <section className="container mx-auto px-4 py-20 md:py-24">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="text-[11px] tracking-[0.35em] text-muted-foreground uppercase">Brand Introduction</span>
+          <h2 className="font-display text-4xl md:text-5xl mt-3 mb-8 text-foreground">
+            IT'S REALLY A LIFESTYLE.
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Lifestyle 1104 was created with a simple mission: to make healthier choices feel accessible,
+            enjoyable and realistic for everyday life. We believe wellness doesn't have to be all or nothing.
+            Wherever you are in your journey, there's a place to start.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            From smoothies and fresh juices to nourishing bowls and wellness favorites, we focus on quality
+            ingredients, great taste and options people can actually enjoy — without making a healthier
+            lifestyle feel complicated or out of reach.
+          </p>
+          <p className="font-display text-sm md:text-base tracking-[0.3em] uppercase text-foreground">
+            Eat well. Drink well. Live well.
+          </p>
         </div>
       </section>
 
