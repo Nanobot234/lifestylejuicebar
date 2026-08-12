@@ -107,17 +107,6 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </DropdownMenu>
 
             <NavLink
-              to="/contact"
-              className={({ isActive }) =>
-                `text-xs tracking-[0.2em] uppercase font-medium transition duration-200 hover:text-foreground ${
-                  isActive ? "text-foreground" : "text-muted-foreground"
-                }`
-              }
-            >
-              Contact
-            </NavLink>
-
-            <NavLink
               to="/menu?category=cold%20pressed%20juice%20cleans"
               className="text-xs tracking-[0.2em] uppercase font-medium transition duration-200 text-muted-foreground hover:text-foreground"
             >
@@ -133,6 +122,17 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               }
             >
               Events
+            </NavLink>
+
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `text-xs tracking-[0.2em] uppercase font-medium transition duration-200 hover:text-foreground ${
+                  isActive ? "text-foreground" : "text-muted-foreground"
+                }`
+              }
+            >
+              Contact
             </NavLink>
 
             <NavLink
