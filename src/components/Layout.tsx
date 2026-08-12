@@ -31,19 +31,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/menu", label: "Menu" },
+    { path: "/menu?category=cold%20pressed%20juice%20cleans", label: "Juice Cleanse" },
+    { path: "/events", label: "Events" },
     { path: "/track-order", label: "Track Order" },
     { path: "/contact", label: "Contact" },
   ];
 
   const menuSubLinks = [
-    { path: "/menu?category=fresh%20juice", label: "Fresh Juices" },
-    { path: "/menu?category=cold-pressed%20juice", label: "Cold-Pressed" },
     { path: "/menu?category=superfood%20blends", label: "Superfood Blends" },
     { path: "/menu?category=protein%20blends", label: "Protein Blends" },
+    { path: "/menu?category=fresh%20juice", label: "Fresh Juices" },
+    { path: "/menu?category=cold-pressed%20juice", label: "Cold-Pressed" },
     { path: "/menu?category=bowls", label: "Bowls" },
-    { path: "/menu?category=toast", label: "Toasts" },
+    { path: "/menu?category=toast", label: "Toast" },
     { path: "/menu?category=protein%20bites", label: "Protein Bites" },
-    { path: "/menu?category=cold%20pressed%20juice%20cleans", label: "Cold Pressed Juice Cleans" },
     { path: "/menu?category=sea%20moss", label: "Sea Moss" },
   ];
 
@@ -65,7 +66,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="container mx-auto px-4 py-5 flex justify-between items-center">
           <div className="flex items-center">
             <NavLink to="/" className="flex items-center leading-none" aria-label="Lifestyle 1104 Juice Bar">
-              <img src={logo} alt="Lifestyle 1104 Juice Bar" className="h-14 md:h-16 w-auto" />
+              <img src={logo} alt="Lifestyle 1104 Juice Bar" className="h-[4.75rem] md:h-[5.5rem] w-auto" />
             </NavLink>
           </div>
 
