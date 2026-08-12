@@ -118,6 +118,24 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </NavLink>
 
             <NavLink
+              to="/menu?category=cold%20pressed%20juice%20cleans"
+              className="text-xs tracking-[0.2em] uppercase font-medium transition duration-200 text-muted-foreground hover:text-foreground"
+            >
+              Juice Cleanse
+            </NavLink>
+
+            <NavLink
+              to="/events"
+              className={({ isActive }) =>
+                `text-xs tracking-[0.2em] uppercase font-medium transition duration-200 hover:text-foreground ${
+                  isActive ? "text-foreground" : "text-muted-foreground"
+                }`
+              }
+            >
+              Events
+            </NavLink>
+
+            <NavLink
               to="/track-order"
               className={({ isActive }) =>
                 `text-xs tracking-[0.2em] uppercase font-medium transition duration-200 hover:text-foreground ${
@@ -246,6 +264,26 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         }
                       >
                         Contact
+                      </NavLink>
+                      <Link
+                        to="/menu?category=cold%20pressed%20juice%20cleans"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="px-2 py-2 rounded-md tracking-[0.15em] uppercase text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+                      >
+                        Juice Cleanse
+                      </Link>
+                      <NavLink
+                        to="/events"
+                        onClick={() => setIsMenuOpen(false)}
+                        className={({ isActive }) =>
+                          `px-2 py-2 rounded-md tracking-[0.15em] uppercase text-sm ${
+                            isActive
+                              ? "bg-muted text-foreground font-medium"
+                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          }`
+                        }
+                      >
+                        Events
                       </NavLink>
                       <NavLink
                         to="/track-order"
