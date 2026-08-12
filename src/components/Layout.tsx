@@ -415,6 +415,28 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
             <div>
               <h3 className="text-xs tracking-[0.25em] uppercase mb-4 text-background/60">Visit</h3>
+              <ul className="space-y-3 mb-5">
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=6+E+167th+St+Bronx+NY"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-background/80 hover:text-background transition-colors text-sm underline underline-offset-4"
+                  >
+                    6 E. 167th St. — Bronx, NY
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=411+W+35th+St+New+York+NY"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-background/80 hover:text-background transition-colors text-sm underline underline-offset-4"
+                  >
+                    411 W. 35th St. — New York, NY
+                  </a>
+                </li>
+              </ul>
               <p className="text-background/80 mb-2 text-sm">Follow us on Instagram</p>
               <a href="https://www.instagram.com/lifestyle1104juicebar" target="_blank" rel="noopener noreferrer" className="text-background underline underline-offset-4 text-sm">@lifestyle1104juicebar</a>
             </div>
