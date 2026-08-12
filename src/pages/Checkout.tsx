@@ -265,7 +265,7 @@ const Checkout = () => {
                                     <RadioGroupItem value="pickup" />
                                   </FormControl>
                                   <FormLabel className="font-normal cursor-pointer">
-                                    Pickup
+                                    PICKUP — order ahead, grab in store
                                   </FormLabel>
                                 </FormItem>
                                 <FormItem className="flex items-center space-x-2">
@@ -273,7 +273,7 @@ const Checkout = () => {
                                     <RadioGroupItem value="delivery" />
                                   </FormControl>
                                   <FormLabel className="font-normal cursor-pointer">
-                                    Local delivery (+$3.99)
+                                    LOCAL DELIVERY (+$3.99)
                                   </FormLabel>
                                 </FormItem>
                               </>
@@ -284,16 +284,26 @@ const Checkout = () => {
                                   <RadioGroupItem value="shipping" />
                                 </FormControl>
                                 <FormLabel className="font-normal cursor-pointer">
-                                  Ship to my address
+                                  SHIPPING — ship to my address
                                 </FormLabel>
                               </FormItem>
                             )}
                           </RadioGroup>
                         </FormControl>
                         {cartHasShippable && (
-                          <p className="text-xs text-muted-foreground mt-2">
-                            Your cart includes sea moss, which ships nationwide. Shipping is calculated from your address below. For fresh juices or bowls, place a separate pickup/delivery order.
-                          </p>
+                          <div className="text-xs text-muted-foreground mt-2 space-y-2">
+                            <p>
+                              Your cart includes a shippable item (Juice Cleanse or Sea Moss). Shipping is
+                              calculated from your delivery address and the package weight/service required.
+                              For fresh juices, blends, bowls or toast, place a separate pickup or local
+                              delivery order.
+                            </p>
+                            <p>
+                              <strong>Processing time is separate from shipping/transit time.</strong> Juice
+                              Cleanse orders need 3–5 business days to prepare; Sea Moss needs 2 business days
+                              before it ships.
+                            </p>
+                          </div>
                         )}
                         <FormMessage />
                       </FormItem>

@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      event_inquiries: {
+        Row: {
+          company: string | null
+          created_at: string
+          details: string | null
+          email: string
+          event_type: string | null
+          guest_count: string | null
+          id: string
+          name: string
+          phone: string | null
+          preferred_date: string | null
+        }
+        Insert: {
+          company?: string | null
+          created_at?: string
+          details?: string | null
+          email: string
+          event_type?: string | null
+          guest_count?: string | null
+          id?: string
+          name: string
+          phone?: string | null
+          preferred_date?: string | null
+        }
+        Update: {
+          company?: string | null
+          created_at?: string
+          details?: string | null
+          email?: string
+          event_type?: string | null
+          guest_count?: string | null
+          id?: string
+          name?: string
+          phone?: string | null
+          preferred_date?: string | null
+        }
+        Relationships: []
+      }
       newsletter_subscribers: {
         Row: {
           created_at: string

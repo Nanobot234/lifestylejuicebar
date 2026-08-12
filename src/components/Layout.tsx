@@ -31,19 +31,20 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/menu", label: "Menu" },
+    { path: "/menu?category=cold%20pressed%20juice%20cleans", label: "Juice Cleanse" },
+    { path: "/events", label: "Events" },
     { path: "/track-order", label: "Track Order" },
     { path: "/contact", label: "Contact" },
   ];
 
   const menuSubLinks = [
-    { path: "/menu?category=fresh%20juice", label: "Fresh Juices" },
-    { path: "/menu?category=cold-pressed%20juice", label: "Cold-Pressed" },
     { path: "/menu?category=superfood%20blends", label: "Superfood Blends" },
     { path: "/menu?category=protein%20blends", label: "Protein Blends" },
+    { path: "/menu?category=fresh%20juice", label: "Fresh Juices" },
+    { path: "/menu?category=cold-pressed%20juice", label: "Cold-Pressed" },
     { path: "/menu?category=bowls", label: "Bowls" },
-    { path: "/menu?category=toast", label: "Toasts" },
+    { path: "/menu?category=toast", label: "Toast" },
     { path: "/menu?category=protein%20bites", label: "Protein Bites" },
-    { path: "/menu?category=cold%20pressed%20juice%20cleans", label: "Cold Pressed Juice Cleans" },
     { path: "/menu?category=sea%20moss", label: "Sea Moss" },
   ];
 
@@ -65,7 +66,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="container mx-auto px-4 py-5 flex justify-between items-center">
           <div className="flex items-center">
             <NavLink to="/" className="flex items-center leading-none" aria-label="Lifestyle 1104 Juice Bar">
-              <img src={logo} alt="Lifestyle 1104 Juice Bar" className="h-14 md:h-16 w-auto" />
+              <img src={logo} alt="Lifestyle 1104 Juice Bar" className="h-[4.75rem] md:h-[5.5rem] w-auto" />
             </NavLink>
           </div>
 
@@ -104,6 +105,24 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
+
+            <NavLink
+              to="/menu?category=cold%20pressed%20juice%20cleans"
+              className="text-xs tracking-[0.2em] uppercase font-medium transition duration-200 text-muted-foreground hover:text-foreground"
+            >
+              Juice Cleanse
+            </NavLink>
+
+            <NavLink
+              to="/events"
+              className={({ isActive }) =>
+                `text-xs tracking-[0.2em] uppercase font-medium transition duration-200 hover:text-foreground ${
+                  isActive ? "text-foreground" : "text-muted-foreground"
+                }`
+              }
+            >
+              Events
+            </NavLink>
 
             <NavLink
               to="/contact"
@@ -246,6 +265,26 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                       >
                         Contact
                       </NavLink>
+                      <Link
+                        to="/menu?category=cold%20pressed%20juice%20cleans"
+                        onClick={() => setIsMenuOpen(false)}
+                        className="px-2 py-2 rounded-md tracking-[0.15em] uppercase text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
+                      >
+                        Juice Cleanse
+                      </Link>
+                      <NavLink
+                        to="/events"
+                        onClick={() => setIsMenuOpen(false)}
+                        className={({ isActive }) =>
+                          `px-2 py-2 rounded-md tracking-[0.15em] uppercase text-sm ${
+                            isActive
+                              ? "bg-muted text-foreground font-medium"
+                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                          }`
+                        }
+                      >
+                        Events
+                      </NavLink>
                       <NavLink
                         to="/track-order"
                         onClick={() => setIsMenuOpen(false)}
@@ -376,6 +415,28 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </div>
             <div>
               <h3 className="text-xs tracking-[0.25em] uppercase mb-4 text-background/60">Visit</h3>
+              <ul className="space-y-3 mb-5">
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=6+E+167th+St+Bronx+NY"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-background/80 hover:text-background transition-colors text-sm underline underline-offset-4"
+                  >
+                    6 E. 167th St. — Bronx, NY
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=411+W+35th+St+New+York+NY"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-background/80 hover:text-background transition-colors text-sm underline underline-offset-4"
+                  >
+                    411 W. 35th St. — New York, NY
+                  </a>
+                </li>
+              </ul>
               <p className="text-background/80 mb-2 text-sm">Follow us on Instagram</p>
               <a href="https://www.instagram.com/lifestyle1104juicebar" target="_blank" rel="noopener noreferrer" className="text-background underline underline-offset-4 text-sm">@lifestyle1104juicebar</a>
             </div>

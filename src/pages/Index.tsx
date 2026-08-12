@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Leaf, Sparkles, Heart, Droplets, Zap, ShieldCheck } from "lucide-react";
+import { ArrowRight, Leaf, Sparkles, Heart, Droplets, Zap, ShieldCheck, PartyPopper } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import ProductCard from "@/components/ProductCard";
@@ -79,6 +79,29 @@ const Index = () => {
               ✦ {t.toUpperCase()}
             </span>
           ))}
+        </div>
+      </section>
+
+      {/* Brand introduction — the approved "It's Really a Lifestyle." copy */}
+      <section className="container mx-auto px-4 py-20 md:py-24">
+        <div className="max-w-3xl mx-auto text-center">
+          <span className="text-[11px] tracking-[0.35em] text-muted-foreground uppercase">Brand Introduction</span>
+          <h2 className="font-display text-4xl md:text-5xl mt-3 mb-8 text-foreground">
+            IT'S REALLY A LIFESTYLE.
+          </h2>
+          <p className="text-muted-foreground leading-relaxed mb-6">
+            Lifestyle 1104 was created with a simple mission: to make healthier choices feel accessible,
+            enjoyable and realistic for everyday life. We believe wellness doesn't have to be all or nothing.
+            Wherever you are in your journey, there's a place to start.
+          </p>
+          <p className="text-muted-foreground leading-relaxed mb-8">
+            From smoothies and fresh juices to nourishing bowls and wellness favorites, we focus on quality
+            ingredients, great taste and options people can actually enjoy — without making a healthier
+            lifestyle feel complicated or out of reach.
+          </p>
+          <p className="font-display text-sm md:text-base tracking-[0.3em] uppercase text-foreground">
+            Eat well. Drink well. Live well.
+          </p>
         </div>
       </section>
 
@@ -266,6 +289,29 @@ const Index = () => {
           </div>
         </section>
       )}
+
+      {/* Events + Corporate Wellness CTA — intentionally later in the homepage flow */}
+      <section className="container mx-auto px-4 py-20 border-t border-border">
+        <div className="bg-muted/40 rounded-3xl p-8 md:p-14 text-center">
+          <PartyPopper className="h-6 w-6 mx-auto mb-4 text-foreground" />
+          <span className="text-[11px] tracking-[0.35em] text-muted-foreground uppercase">
+            Events + Corporate Wellness
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl mt-3 mb-5 text-foreground">
+            BRING THE LIFESTYLE TO YOUR NEXT EVENT
+          </h2>
+          <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
+            From workplace wellness and corporate events to pop-ups and private celebrations, we bring
+            fresh, feel-good options directly to you.
+          </p>
+          <Button
+            onClick={() => navigate("/events")}
+            className="juice-button bg-foreground text-background hover:bg-foreground/90 uppercase text-xs tracking-[0.2em]"
+          >
+            Plan Your Event <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+      </section>
 
       {/* Philosophy */}
       <section className="bg-foreground text-background py-20">
