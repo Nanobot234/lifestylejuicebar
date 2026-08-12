@@ -18,6 +18,7 @@ import TrackOrder from "./pages/TrackOrder";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import BusinessDashboard from "./pages/BusinessDashboard";
 import Contact from "./pages/Contact";
+import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 import PromoPopup from "./components/PromoPopup";
 
@@ -47,6 +48,7 @@ function App() {
                 <Route path="/customer-dashboard" element={<CustomerDashboard />} />
                 <Route path="/business-dashboard" element={<BusinessDashboard />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/events" element={<Events />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </BrowserRouter>
