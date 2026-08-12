@@ -36,6 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
   const isColdPressed = product.category === "cold-pressed juice";
   const isBowl = product.category === "bowls";
   const isCleanse = product.category === "cold pressed juice cleans";
+  const isSeaMoss = product.category === "sea moss";
 
   // Local state for size, cleanse duration, and bowl customizations.
   const [size, setSize] = useState<JuiceSize>("16oz");
@@ -153,6 +154,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
               </button>
             ))}
           </div>
+        )}
+        {/* Processing notices shown near purchase controls for made-fresh shippable products */}
+        {isCleanse && (
+          <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+            <span className="font-semibold text-foreground">Freshly pressed for your order.</span>{" "}
+            Please allow <strong>3–5 business days for processing</strong> before your order is ready for
+            pickup, local delivery or shipment. Processing time is separate from shipping/transit time —
+            we recommend ordering ahead of the date you'd like to begin.
+          </p>
+        )}
+        {isSeaMoss && (
+          <p className="mt-3 text-xs text-muted-foreground leading-relaxed">
+            <span className="font-semibold text-foreground">Made fresh for your order.</span>{" "}
+            Please allow <strong>2 business days for processing</strong> before your order ships.
+            Processing time is separate from shipping/transit time.
+          </p>
         )}
         {isBowl && (
           <div className="mt-4">
