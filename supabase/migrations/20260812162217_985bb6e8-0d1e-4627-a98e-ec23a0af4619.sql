@@ -1,0 +1,1 @@
+UPDATE public.products SET is_shippable = true WHERE category = 'cold pressed juice cleans';
