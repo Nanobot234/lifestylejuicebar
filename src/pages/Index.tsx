@@ -290,6 +290,29 @@ const Index = () => {
         </section>
       )}
 
+      {/* Events + Corporate Wellness CTA — intentionally later in the homepage flow */}
+      <section className="container mx-auto px-4 py-20 border-t border-border">
+        <div className="bg-muted/40 rounded-3xl p-8 md:p-14 text-center">
+          <PartyPopper className="h-6 w-6 mx-auto mb-4 text-foreground" />
+          <span className="text-[11px] tracking-[0.35em] text-muted-foreground uppercase">
+            Events + Corporate Wellness
+          </span>
+          <h2 className="font-display text-3xl md:text-5xl mt-3 mb-5 text-foreground">
+            BRING THE LIFESTYLE TO YOUR NEXT EVENT
+          </h2>
+          <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
+            From workplace wellness and corporate events to pop-ups and private celebrations, we bring
+            fresh, feel-good options directly to you.
+          </p>
+          <Button
+            onClick={() => navigate("/events")}
+            className="juice-button bg-foreground text-background hover:bg-foreground/90 uppercase text-xs tracking-[0.2em]"
+          >
+            Plan Your Event <ArrowRight className="ml-2 h-4 w-4" />
+          </Button>
+        </div>
+      </section>
+
       {/* Philosophy */}
       <section className="bg-foreground text-background py-20">
         <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
