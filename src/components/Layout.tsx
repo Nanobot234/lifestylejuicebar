@@ -12,7 +12,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import logo from "@/assets/logo.png";
+import logo from "@/assets/logo.webp";
 import PaymentTestModeBanner from "@/components/PaymentTestModeBanner";
 
 interface LayoutProps {

@@ -2,7 +2,7 @@
 import { supabase } from "@/integrations/supabase/client";
 import { Product } from "@/types";
 
-// Resolve "/src/assets/foo.jpg" paths stored in the DB to bundled asset URLs.
+// Resolve "/src/assets/foo.webp" paths stored in the DB to bundled asset URLs.
 const assetModules = import.meta.glob("/src/assets/*", {
   eager: true,
   query: "?url",

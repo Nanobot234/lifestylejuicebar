@@ -7,7 +7,7 @@ import ProductCard from "@/components/ProductCard";
 import { fetchProducts } from "@/services/productsService";
 import { Product } from "@/types";
 import { useCart } from "@/context/CartContext";
-import allSmoothiesImg from "@/assets/all-smoothies.jpeg";
+import allSmoothiesImg from "@/assets/all-smoothies.webp";
 
 const Index = () => {
   const navigate = useNavigate();
