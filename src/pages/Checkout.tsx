@@ -33,6 +33,7 @@ import {
 import { DeliveryMethod, PaymentMethod } from "@/types";
 import { toast } from "sonner";
 import { calculateShipping, hasShippableItems, US_STATES } from "@/lib/shipping";
+import StripeEmbeddedCheckout from "@/components/StripeEmbeddedCheckout";
 
 // Store locations shown on the checkout pickup selector with Google Maps directions.
 const PICKUP_LOCATIONS = [
