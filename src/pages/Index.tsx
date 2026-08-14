@@ -85,8 +85,7 @@ const Index = () => {
       {/* Brand introduction — the approved "It's Really a Lifestyle." copy */}
       <section className="container mx-auto px-4 py-20 md:py-24">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="text-[11px] tracking-[0.35em] text-muted-foreground uppercase">Brand Introduction</span>
-          <h2 className="font-display text-4xl md:text-5xl mt-3 mb-8 text-foreground">
+          <h2 className="font-display text-4xl md:text-5xl mb-8 text-foreground">
             IT'S REALLY A LIFESTYLE.
           </h2>
           <p className="text-muted-foreground leading-relaxed mb-6">
