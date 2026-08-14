@@ -49,7 +49,8 @@ const PERFECT_FOR = [
 
 const EVENT_TYPES = [
   "Smoothie + Acai Station",
-  "Juice + Wellness",
+  "Juices + Wellness",
+  "Fresh Catering",
   "Workplace Drop",
   "Stock the Fridge",
   "Other / Not Sure Yet",
