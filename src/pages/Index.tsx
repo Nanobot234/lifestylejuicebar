@@ -9,6 +9,7 @@ import { Product } from "@/types";
 import { useCart } from "@/context/CartContext";
 import { productImageAlt } from "@/lib/imageAlt";
 import allSmoothiesImg from "@/assets/all-smoothies.webp";
+import eventStation from "@/assets/event-station.webp";
 
 const Index = () => {
   const navigate = useNavigate();
