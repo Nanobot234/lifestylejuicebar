@@ -116,12 +116,12 @@ const Index = () => {
         <section className="container mx-auto px-4 py-20">
           <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center bg-muted/40 rounded-3xl p-6 md:p-12">
             <div className="relative">
-              <div className="aspect-square md:aspect-[4/5] overflow-hidden rounded-2xl bg-background flex items-center justify-center">
+              <div className="aspect-square md:aspect-[4/5] overflow-hidden rounded-2xl bg-background">
                 <img
                   src={cleanse.image}
                   alt={productImageAlt(cleanse.name, cleanse.category)}
                   loading="lazy"
-                  className="w-full h-full object-contain p-4"
+                  className="w-full h-full object-cover"
                 />
               </div>
             </div>
