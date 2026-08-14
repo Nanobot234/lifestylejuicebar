@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
+import PaymentTestModeBanner from "@/components/PaymentTestModeBanner";
 
 interface LayoutProps {
   children: React.ReactNode;
