@@ -96,7 +96,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
       <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
         <img
           src={product.image}
-          alt={product.name}
+          alt={productImageAlt(product.name, product.category)}
+          loading="lazy"
           className={cn(
             "w-full h-full object-center transform group-hover:scale-105 transition-transform duration-700",
             isCleanse ? "object-contain p-4" : "object-cover"
