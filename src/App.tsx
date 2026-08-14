@@ -34,6 +34,7 @@ function App() {
           <CartProvider>
             <Toaster />
             <BrowserRouter>
+              <ScrollToTop />
               <PromoPopup />
               <Routes>
                 <Route path="/" element={<Index />} />
