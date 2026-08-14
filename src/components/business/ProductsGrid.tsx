@@ -1,4 +1,5 @@
 
+import { productImageAlt } from "@/lib/imageAlt";
 import React, { useState } from "react";
 import { Product } from "@/types";
 import { Button } from "@/components/ui/button";
@@ -86,7 +87,7 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products, onProductsChanged
             
             <h4 className="font-semibold text-md mb-2 pr-16">{product.name}</h4>
             <div className="mb-2">
-              <img src={product.image} alt={product.name} className="w-full h-32 object-cover rounded" />
+              <img src={product.image} alt={productImageAlt(product.name, product.category)} className="w-full h-32 object-cover rounded" />
             </div>
             <div className="text-xs text-gray-600 mb-2">{product.category}</div>
             <div className="font-bold mb-2">${product.price?.toFixed(2)}</div>

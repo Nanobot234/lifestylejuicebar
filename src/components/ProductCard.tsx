@@ -6,6 +6,7 @@ import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { useCart } from "@/context/CartContext";
 import { Product } from "@/types";
 import { cn } from "@/lib/utils";
+import { productImageAlt } from "@/lib/imageAlt";
 
 type JuiceSize = "16oz" | "24oz";
 const SIZE_UPCHARGE: Record<JuiceSize, number> = { "16oz": 0, "24oz": 2 };
