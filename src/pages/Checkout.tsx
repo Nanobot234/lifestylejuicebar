@@ -186,6 +186,32 @@ const Checkout = () => {
     deliveryMethod === "shipping" ? calculateShipping(cartItems, shipState) : 0;
   const totalWithFees = subtotal + tax + localDeliveryFee + shippingFee;
 
+  // Once the details are captured, show only the Stripe payment form.
+  if (checkoutBody) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-12 max-w-3xl">
+          <h1 className="text-3xl font-bold mb-2">Payment</h1>
+          <p className="text-gray-600 mb-6">
+            Total ${totalWithFees.toFixed(2)} — pay securely below.
+          </p>
+          <StripeEmbeddedCheckout
+            functionName="create-cart-checkout"
+            body={checkoutBody}
+            returnUrl={`${window.location.origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`}
+          />
+          <Button
+            variant="outline"
+            className="mt-6"
+            onClick={() => setCheckoutBody(null)}
+          >
+            Back to order details
+          </Button>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="container mx-auto px-4 py-12">
