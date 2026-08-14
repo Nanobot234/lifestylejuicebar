@@ -12,6 +12,7 @@ import Checkout from "./pages/Checkout";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import PaymentSuccess from "./pages/PaymentSuccess";
 import SubscriptionSuccess from "./pages/SubscriptionSuccess";
+import MaintenanceSubscription from "./pages/MaintenanceSubscription";
 import Login from "./pages/Login";
 import MyOrders from "./pages/MyOrders";
 import TrackOrder from "./pages/TrackOrder";
@@ -22,6 +23,7 @@ import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 import PromoPopup from "./components/PromoPopup";
 import ScrollToTop from "./components/ScrollToTop";
+
 
 const queryClient = new QueryClient();
 
@@ -44,6 +46,7 @@ function App() {
                 <Route path="/order-confirmation" element={<OrderConfirmation />} />
                 <Route path="/payment-success" element={<PaymentSuccess />} />
                 <Route path="/subscription-success" element={<SubscriptionSuccess />} />
+                <Route path="/maintenance" element={<MaintenanceSubscription />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/my-orders" element={<MyOrders />} />
                 <Route path="/track-order" element={<TrackOrder />} />
