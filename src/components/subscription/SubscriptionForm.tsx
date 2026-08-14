@@ -124,7 +124,7 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({ items, onSuccess })
         <StripeEmbeddedCheckout
           functionName="create-recurring-checkout"
           body={checkoutBody}
-          returnUrl={`${window.location.origin}/my-subscriptions?session_id={CHECKOUT_SESSION_ID}`}
+          returnUrl={`${window.location.origin}/subscription-success?session_id={CHECKOUT_SESSION_ID}`}
         />
         <Button variant="outline" className="mt-6" onClick={() => setCheckoutBody(null)}>
           Back
