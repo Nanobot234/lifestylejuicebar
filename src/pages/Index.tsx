@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, Leaf, Sparkles, Heart, Droplets, Zap, ShieldCheck, PartyPopper } from "lucide-react";
+import { ArrowRight, Leaf, Sparkles, Heart, Droplets, Zap, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import ProductCard from "@/components/ProductCard";
@@ -299,7 +299,6 @@ const Index = () => {
       {/* Events + Corporate Wellness CTA — intentionally later in the homepage flow */}
       <section className="container mx-auto px-4 py-20 border-t border-border">
         <div className="bg-muted/40 rounded-3xl p-8 md:p-14 text-center">
-          <PartyPopper className="h-6 w-6 mx-auto mb-4 text-foreground" />
           <span className="text-[11px] tracking-[0.35em] text-muted-foreground uppercase">
             Events + Corporate Wellness
           </span>
@@ -316,6 +315,14 @@ const Index = () => {
           >
             Plan Your Event <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
+          <div className="mt-10 overflow-hidden rounded-2xl">
+            <img
+              src={eventStation}
+              alt="Lifestyle 1104 smoothie station with branded table and colorful smoothies at a corporate event in New York City"
+              loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </div>
         </div>
       </section>
 
