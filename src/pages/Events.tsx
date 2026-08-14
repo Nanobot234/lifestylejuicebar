@@ -19,11 +19,15 @@ import { toast } from "sonner";
 const SERVICES = [
   {
     title: "SMOOTHIE + ACAI STATIONS",
-    copy: "Fresh smoothies and customizable acai experiences prepared and served on-site.",
+    copy: "Fresh smoothies and customizable açaí experiences, prepared and served on-site with selections tailored to your event.",
   },
   {
-    title: "JUICE + WELLNESS",
+    title: "JUICES + WELLNESS",
     copy: "Cold-pressed juices, wellness shots, refreshers and more.",
+  },
+  {
+    title: "FRESH CATERING",
+    copy: "Bowls, overnight oats, toast, fruit and other fresh options customized for your event.",
   },
   {
     title: "WORKPLACE DROPS",
