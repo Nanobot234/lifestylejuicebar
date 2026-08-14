@@ -4,6 +4,7 @@ import { useCart } from "../context/CartContext";
 import { useAuth } from "../context/AuthContext";
 import Layout from "../components/Layout";
 import { Button } from "@/components/ui/button";
+import { productImageAlt } from "@/lib/imageAlt";
 import { Trash2, ArrowRight, RefreshCw } from "lucide-react";
 import SubscriptionForm from "@/components/subscription/SubscriptionForm";
 import {
@@ -62,7 +63,7 @@ const Cart = () => {
                     <div className="flex items-center">
                       <img
                         src={item.image}
-                        alt={item.name}
+                        alt={productImageAlt(item.name, item.category)}
                         className="w-16 h-16 object-cover rounded-md mr-4"
                       />
                       <div>

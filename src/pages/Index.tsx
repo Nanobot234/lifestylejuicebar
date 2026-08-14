@@ -7,7 +7,8 @@ import ProductCard from "@/components/ProductCard";
 import { fetchProducts } from "@/services/productsService";
 import { Product } from "@/types";
 import { useCart } from "@/context/CartContext";
-import allSmoothiesImg from "@/assets/all-smoothies.jpeg";
+import { productImageAlt } from "@/lib/imageAlt";
+import allSmoothiesImg from "@/assets/all-smoothies.webp";
 
 const Index = () => {
   const navigate = useNavigate();
@@ -61,8 +62,13 @@ const Index = () => {
           </div>
 
           <div className="order-1 md:order-2 relative">
-            <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-muted">
-              <img src={allSmoothiesImg} alt="Lifestyle 1104 signature smoothie lineup" className="w-full h-full object-cover" />
+            <div className="aspect-[4/3] md:aspect-[5/4] overflow-hidden rounded-2xl bg-muted">
+              <img
+                src={allSmoothiesImg}
+                alt="Fresh cold-pressed juices and smoothies on a table at a New York City juice bar — Lifestyle 1104"
+                className="w-full h-full object-cover"
+                loading="eager"
+              />
             </div>
             <div className="absolute -bottom-6 -left-4 bg-background border border-border px-5 py-3 rounded-full shadow-sm">
               <span className="text-[10px] tracking-[0.3em] uppercase text-muted-foreground">100% Real</span>
@@ -112,7 +118,8 @@ const Index = () => {
               <div className="aspect-square md:aspect-[4/5] overflow-hidden rounded-2xl bg-background flex items-center justify-center">
                 <img
                   src={cleanse.image}
-                  alt={cleanse.name}
+                  alt={productImageAlt(cleanse.name, cleanse.category)}
+                  loading="lazy"
                   className="w-full h-full object-contain p-4"
                 />
               </div>
@@ -297,7 +304,7 @@ const Index = () => {
             Events + Corporate Wellness
           </span>
           <h2 className="font-display text-3xl md:text-5xl mt-3 mb-5 text-foreground">
-            BRING THE LIFESTYLE TO YOUR NEXT EVENT
+            BRING LIFESTYLE TO YOUR NEXT EVENT
           </h2>
           <p className="text-muted-foreground leading-relaxed max-w-2xl mx-auto mb-8">
             From workplace wellness and corporate events to pop-ups and private celebrations, we bring
