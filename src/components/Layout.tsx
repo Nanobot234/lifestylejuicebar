@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import logo from "@/assets/logo.png";
+import PaymentTestModeBanner from "@/components/PaymentTestModeBanner";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -62,6 +63,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <PaymentTestModeBanner />
       <header className="sticky top-0 z-50 bg-background/85 backdrop-blur-md border-b border-border">
         <div className="container mx-auto px-4 py-5 flex justify-between items-center">
           <div className="flex items-center">

@@ -9,6 +9,7 @@ import { updateSubscriptionStatus } from "@/services/subscriptionService";
 import { supabase } from "@/integrations/supabase/client";
 import { Calendar, PauseCircle, PlayCircle, XCircle, Settings } from "lucide-react";
 import { toast } from "sonner";
+import { getStripeEnvironment } from "@/lib/stripe";
 
 interface SubscriptionCardProps {
   subscription: UserSubscription;
@@ -25,7 +26,12 @@ const SubscriptionCard: React.FC<SubscriptionCardProps> = ({ subscription, onRef
 
   const handleManageSubscription = async () => {
     try {
-      const { data, error } = await supabase.functions.invoke('customer-portal');
+      const { data, error } = await supabase.functions.invoke('create-portal-session', {
+        body: {
+          environment: getStripeEnvironment(),
+          returnUrl: window.location.href,
+        },
+      });
       
       if (error) {
         throw error;

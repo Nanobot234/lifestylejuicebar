@@ -33,6 +33,7 @@ import {
 import { DeliveryMethod, PaymentMethod } from "@/types";
 import { toast } from "sonner";
 import { calculateShipping, hasShippableItems, US_STATES } from "@/lib/shipping";
+import StripeEmbeddedCheckout from "@/components/StripeEmbeddedCheckout";
 
 // Store locations shown on the checkout pickup selector with Google Maps directions.
 const PICKUP_LOCATIONS = [
@@ -102,7 +103,10 @@ const Checkout = () => {
   const pickupLocationId = form.watch("pickupLocation");
   const selectedPickup = PICKUP_LOCATIONS.find((l) => l.id === pickupLocationId);
 
-  // Validate the form, build the order details, and redirect the customer to Stripe Checkout.
+  // Payload for the embedded Stripe checkout, set once the form is submitted.
+  const [checkoutBody, setCheckoutBody] = useState<Record<string, unknown> | null>(null);
+
+  // Validate the form, build the order details, and mount Stripe's embedded checkout.
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsSubmitting(true);
     
@@ -155,26 +159,17 @@ const Checkout = () => {
       sessionStorage.setItem("orderItems", JSON.stringify(cartItems));
       sessionStorage.setItem("orderTotal", String(totalWithFees));
 
-      // Create Stripe payment session
-      const { data, error } = await supabase.functions.invoke('create-payment', {
-        body: {
-          items: cartItems,
-          orderDetails,
-          total: totalWithFees,
-          deliveryFee: localDeliveryFee + shippingFee,
-        },
+      // Mount Stripe's embedded checkout with the cart priced line by line.
+      setCheckoutBody({
+        items: cartItems.map((item) => ({
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+        })),
+        fees: localDeliveryFee + shippingFee,
+        tax,
+        customerEmail: values.email,
       });
-
-      if (error) {
-        throw error;
-      }
-
-      if (data?.url) {
-        // Redirect to Stripe Checkout
-        window.location.href = data.url;
-      } else {
-        throw new Error("No checkout URL received");
-      }
     } catch (error) {
       console.error("Error processing payment:", error);
       toast.error("Error processing your payment. Please try again.");
@@ -190,6 +185,32 @@ const Checkout = () => {
   const shippingFee =
     deliveryMethod === "shipping" ? calculateShipping(cartItems, shipState) : 0;
   const totalWithFees = subtotal + tax + localDeliveryFee + shippingFee;
+
+  // Once the details are captured, show only the Stripe payment form.
+  if (checkoutBody) {
+    return (
+      <Layout>
+        <div className="container mx-auto px-4 py-12 max-w-3xl">
+          <h1 className="text-3xl font-bold mb-2">Payment</h1>
+          <p className="text-gray-600 mb-6">
+            Total ${totalWithFees.toFixed(2)} — pay securely below.
+          </p>
+          <StripeEmbeddedCheckout
+            functionName="create-cart-checkout"
+            body={checkoutBody}
+            returnUrl={`${window.location.origin}/payment-success?session_id={CHECKOUT_SESSION_ID}`}
+          />
+          <Button
+            variant="outline"
+            className="mt-6"
+            onClick={() => setCheckoutBody(null)}
+          >
+            Back to order details
+          </Button>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

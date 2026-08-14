@@ -30,6 +30,7 @@ import { Loader2, CalendarIcon } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
+import StripeEmbeddedCheckout from "@/components/StripeEmbeddedCheckout";
 
 interface SubscriptionFormProps {
   items: CartItem[];
@@ -46,6 +47,7 @@ interface FormValues {
 const SubscriptionForm: React.FC<SubscriptionFormProps> = ({ items, onSuccess }) => {
   const [plans, setPlans] = useState<SubscriptionPlan[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [checkoutBody, setCheckoutBody] = useState<Record<string, unknown> | null>(null);
   const { currentUser } = useAuth();
   const { clearCart } = useCart();
   const navigate = useNavigate();
@@ -88,43 +90,19 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({ items, onSuccess })
       return;
     }
 
-    setIsLoading(true);
-    
-    try {
-      // Create Stripe subscription session
-      const { data, error } = await supabase.functions.invoke('create-subscription', {
-        body: {
-          items,
-          planId: values.planId,
-          deliveryAddress: values.address,
-          frequency: values.frequency,
-        },
-      });
+    // Keep the subscription details so they can be applied after payment.
+    sessionStorage.setItem("pendingSubscription", JSON.stringify({
+      planId: values.planId,
+      address: values.address,
+      deliveryDate: values.deliveryDate.toISOString(),
+      items,
+    }));
 
-      if (error) {
-        throw error;
-      }
-
-      if (data?.url) {
-        // Store subscription details for after payment
-        sessionStorage.setItem("pendingSubscription", JSON.stringify({
-          planId: values.planId,
-          address: values.address,
-          deliveryDate: values.deliveryDate.toISOString(),
-          items,
-        }));
-
-        // Redirect to Stripe Checkout
-        window.location.href = data.url;
-      } else {
-        throw new Error("No checkout URL received");
-      }
-    } catch (error) {
-      console.error("Error creating subscription:", error);
-      toast.error("Error creating subscription. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
+    // Show Stripe's embedded checkout for the recurring charge.
+    setCheckoutBody({
+      amount: Number(totalWithDelivery.toFixed(2)),
+      frequency: values.frequency,
+    });
   };
 
   const itemsTotal = items.reduce((total, item) => total + item.price * item.quantity, 0);
@@ -135,6 +113,22 @@ const SubscriptionForm: React.FC<SubscriptionFormProps> = ({ items, onSuccess })
     return (
       <div className="flex justify-center p-8">
         <Loader2 className="h-8 w-8 animate-spin text-juicy-green" />
+      </div>
+    );
+  }
+
+  if (checkoutBody) {
+    return (
+      <div className="bg-white rounded-lg shadow p-6">
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">Confirm Subscription</h2>
+        <StripeEmbeddedCheckout
+          functionName="create-recurring-checkout"
+          body={checkoutBody}
+          returnUrl={`${window.location.origin}/subscription-success?session_id={CHECKOUT_SESSION_ID}`}
+        />
+        <Button variant="outline" className="mt-6" onClick={() => setCheckoutBody(null)}>
+          Back
+        </Button>
       </div>
     );
   }
