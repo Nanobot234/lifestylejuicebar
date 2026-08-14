@@ -316,12 +316,12 @@ const Index = () => {
           >
             Plan Your Event <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
-          <div className="mt-10 overflow-hidden rounded-2xl">
+          <div className="mt-10 overflow-hidden rounded-2xl bg-background">
             <img
               src={eventStation}
               alt="Lifestyle 1104 smoothie station with branded table and colorful smoothies at a corporate event in New York City"
               loading="lazy"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           </div>
         </div>
