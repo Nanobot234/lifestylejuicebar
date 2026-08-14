@@ -21,6 +21,7 @@ import Contact from "./pages/Contact";
 import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 import PromoPopup from "./components/PromoPopup";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
