@@ -63,7 +63,7 @@ const Menu = () => {
       <section className="bg-muted/40 border-b border-border py-16 md:py-24">
         <div className="container mx-auto px-4 text-center">
           <span className="text-[11px] tracking-[0.35em] text-muted-foreground uppercase">The Menu</span>
-          <h1 className="font-display text-5xl md:text-7xl mt-3 mb-5 text-foreground">EVERY SIP, INTENTIONAL.</h1>
+          <h1 className="font-display text-3xl sm:text-5xl md:text-7xl mt-3 mb-5 text-foreground break-words">EVERY SIP, INTENTIONAL.</h1>
           <p className="text-muted-foreground max-w-xl mx-auto mb-8">
             Cold-pressed juices and small-batch smoothies — made fresh every day.
           </p>
@@ -95,8 +95,8 @@ const Menu = () => {
           }}
           className="w-full"
         >
-          <div className="flex justify-center mb-8">
-            <TabsList className="h-auto p-1">
+          <div className="mb-8 -mx-4 px-4 overflow-x-auto md:mx-0 md:px-0 md:flex md:justify-center">
+            <TabsList className="h-auto p-1 w-max md:w-auto md:flex-wrap">
               {categories.map((category) => (
                 <TabsTrigger 
                   key={category} 
