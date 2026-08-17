@@ -113,10 +113,11 @@ const Index = () => {
 
       {/* Juice Cleanse — feature spotlight */}
       {cleanse && (
-        <section className="container mx-auto px-4 py-20">
-          <div className="grid md:grid-cols-[1.25fr_1fr] gap-10 md:gap-12 items-center bg-muted/40 rounded-3xl p-6 md:p-12">
-            <div className="relative -mx-2 md:mx-0">
-              <div className="aspect-[16/9] overflow-hidden rounded-2xl bg-background">
+        <section className="py-20 overflow-hidden">
+          <div className="grid lg:grid-cols-[1.4fr_1fr] items-center gap-0">
+            {/* Edge-to-edge image */}
+            <div className="relative w-full">
+              <div className="aspect-[16/10] md:aspect-[2/1] lg:aspect-[16/10] overflow-hidden bg-background">
                 <img
                   src={cleanse.image}
                   alt={productImageAlt(cleanse.name, cleanse.category)}
@@ -125,7 +126,9 @@ const Index = () => {
                 />
               </div>
             </div>
-            <div>
+
+            {/* Text content — contained */}
+            <div className="px-4 sm:px-6 lg:px-12 xl:px-16 py-12 lg:py-0">
               <span className="text-[11px] tracking-[0.35em] text-muted-foreground uppercase">Reset & Restore</span>
               <h2 className="font-display text-4xl md:text-5xl mt-2 mb-4 text-foreground">JUICE CLEANSE</h2>
               <p className="text-muted-foreground leading-relaxed mb-8 max-w-md">
@@ -164,6 +167,7 @@ const Index = () => {
           </div>
         </section>
       )}
+
 
       {/* Sea Moss */}
       <section className="container mx-auto px-4 py-20 border-t border-border">
