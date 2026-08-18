@@ -13,6 +13,7 @@ import CompletedOrdersTab from "@/components/business/dashboard/CompletedOrdersT
 import ProductManagementTab from "@/components/business/dashboard/ProductManagementTab";
 import BusinessSettingsTab from "@/components/business/dashboard/BusinessSettingsTab";
 import SubscriptionsTab from "@/components/business/dashboard/SubscriptionsTab";
+import PayoutsTab from "@/components/business/dashboard/PayoutsTab";
 
 const BusinessDashboard = () => {
   const { isAuthenticated, isBusinessOwner } = useAuth();
@@ -57,6 +58,7 @@ const BusinessDashboard = () => {
                 <TabsTrigger value="history" className="flex-1">Order History</TabsTrigger>
                 <TabsTrigger value="products" className="flex-1">Products</TabsTrigger>
                 <TabsTrigger value="subscriptions" className="flex-1">Subscriptions</TabsTrigger>
+                <TabsTrigger value="payouts" className="flex-1">Payouts</TabsTrigger>
                 <TabsTrigger value="settings" className="flex-1">Settings</TabsTrigger>
               </TabsList>
             </div>
@@ -86,6 +88,10 @@ const BusinessDashboard = () => {
             
             <TabsContent value="subscriptions" className="p-0">
               <SubscriptionsTab />
+            </TabsContent>
+
+            <TabsContent value="payouts" className="p-0">
+              <PayoutsTab />
             </TabsContent>
             
             <TabsContent value="settings" className="p-0">
