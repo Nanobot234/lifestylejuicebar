@@ -8,6 +8,16 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+/** Unix timestamp for 00:00 UTC-ish on the next upcoming Monday (used to delay first billing). */
+function nextMondayUnix(): number {
+  const now = new Date();
+  const date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 12, 0, 0));
+  do {
+    date.setUTCDate(date.getUTCDate() + 1);
+  } while (date.getUTCDay() !== 1);
+  return Math.floor(date.getTime() / 1000);
+}
+
 /** Finds (or creates) a Stripe customer that carries userId metadata so later reads can resolve it. */
 async function resolveOrCreateCustomer(
   stripe: ReturnType<typeof createStripeClient>,
@@ -55,6 +65,8 @@ Deno.serve(async (req) => {
     const priceId: string = body.priceId;
     const quantity = Math.max(1, Math.round(Number(body.quantity) || 1));
     const returnUrl: string = typeof body.returnUrl === "string" ? body.returnUrl : "";
+    // Optional: delay the first charge until the coming Monday.
+    const startBillingNextMonday = body.startBilling === "next-monday";
 
     if (!priceId || !/^[a-zA-Z0-9_-]+$/.test(priceId)) throw new Error("Invalid priceId");
     if (!returnUrl.startsWith("http")) throw new Error("Invalid return URL");
@@ -93,6 +105,8 @@ Deno.serve(async (req) => {
       productDescription = product.name;
     }
 
+    const trialEnd = isRecurring && startBillingNextMonday ? nextMondayUnix() : undefined;
+
     const session = await stripe.checkout.sessions.create({
       line_items: [{ price: stripePrice.id, quantity }],
       mode: isRecurring ? "subscription" : "payment",
@@ -100,10 +114,15 @@ Deno.serve(async (req) => {
       return_url: returnUrl,
       ...(customerId && { customer: customerId }),
       ...(!isRecurring && { payment_intent_data: { description: productDescription } }),
-      ...(userId && {
-        metadata: { userId },
-        ...(isRecurring && { subscription_data: { metadata: { userId } } }),
-      }),
+      ...(userId && { metadata: { userId } }),
+      ...(isRecurring && (userId || trialEnd)
+        ? {
+            subscription_data: {
+              ...(userId && { metadata: { userId } }),
+              ...(trialEnd && { trial_end: trialEnd }),
+            },
+          }
+        : {}),
     });
 
     return new Response(JSON.stringify({ clientSecret: session.client_secret }), {

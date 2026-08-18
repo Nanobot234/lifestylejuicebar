@@ -23,22 +23,27 @@ const MaintenanceSubscription: React.FC = () => {
           <h1 className="text-2xl font-bold mb-2 font-montserrat">
             Website Maintenance
           </h1>
-          <p className="text-gray-600 mb-6">
+          <p className="text-gray-600 mb-2">
             $85/month for site maintenance, updates, and domain management.
+          </p>
+          <p className="text-sm text-gray-500 mb-6">
+            No charge today — your first payment starts this coming Monday, then
+            monthly after that.
           </p>
 
           {paid ? (
             <div className="flex flex-col items-center gap-3">
               <CheckCircle2 className="h-12 w-12 text-juicy-green" />
-              <p className="font-medium">Subscription active — thank you!</p>
+              <p className="font-medium">Subscription confirmed — thank you!</p>
               <p className="text-sm text-gray-500">
-                A receipt has been emailed to you. You can cancel any time.
+                Your card is saved and the first $85 charge happens this coming
+                Monday. You can cancel any time.
               </p>
             </div>
           ) : showCheckout ? (
             <StripeEmbeddedCheckout
               functionName="create-checkout"
-              body={{ priceId: "site_maintenance_monthly", quantity: 1 }}
+              body={{ priceId: "site_maintenance_monthly", quantity: 1, startBilling: "next-monday" }}
               returnUrl={`${window.location.origin}/maintenance?paid=1&session_id={CHECKOUT_SESSION_ID}`}
             />
           ) : (
@@ -46,7 +51,7 @@ const MaintenanceSubscription: React.FC = () => {
               onClick={() => setShowCheckout(true)}
               className="bg-juicy-green hover:bg-juicy-green/90"
             >
-              Subscribe — $85/month
+              Subscribe — $85/month (starts Monday)
             </Button>
           )}
         </div>
