@@ -9,6 +9,16 @@ const corsHeaders = {
 };
 
 /** Finds (or creates) a Stripe customer that carries userId metadata so later reads can resolve it. */
+/** Unix timestamp for 00:00 UTC-ish on the next upcoming Monday (used to delay first billing). */
+function nextMondayUnix(): number {
+  const now = new Date();
+  const date = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), 12, 0, 0));
+  do {
+    date.setUTCDate(date.getUTCDate() + 1);
+  } while (date.getUTCDay() !== 1);
+  return Math.floor(date.getTime() / 1000);
+}
+
 async function resolveOrCreateCustomer(
   stripe: ReturnType<typeof createStripeClient>,
   options: { email?: string; userId?: string },
