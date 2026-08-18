@@ -39,6 +39,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   ];
 
   const menuSubLinks = [
+    { path: "/menu?category=juice%20cleanse", label: "Juice Cleanse" },
     { path: "/menu?category=superfood%20blends", label: "Superfood Blends" },
     { path: "/menu?category=protein%20blends", label: "Protein Blends" },
     { path: "/menu?category=fresh%20juice", label: "Fresh Juices" },
