@@ -32,13 +32,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const navItems = [
     { path: "/", label: "Home" },
     { path: "/menu", label: "Menu" },
-    { path: "/menu?category=cold%20pressed%20juice%20cleans", label: "Juice Cleanse" },
+    { path: "/menu?category=juice%20cleanse", label: "Juice Cleanse" },
     { path: "/events", label: "Events" },
     { path: "/track-order", label: "Track Order" },
     { path: "/contact", label: "Contact" },
   ];
 
   const menuSubLinks = [
+    { path: "/menu?category=juice%20cleanse", label: "Juice Cleanse" },
     { path: "/menu?category=superfood%20blends", label: "Superfood Blends" },
     { path: "/menu?category=protein%20blends", label: "Protein Blends" },
     { path: "/menu?category=fresh%20juice", label: "Fresh Juices" },
@@ -109,7 +110,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             </DropdownMenu>
 
             <NavLink
-              to="/menu?category=cold%20pressed%20juice%20cleans"
+              to="/menu?category=juice%20cleanse"
               className="text-xs tracking-[0.2em] uppercase font-medium transition duration-200 text-muted-foreground hover:text-foreground"
             >
               Juice Cleanse
@@ -268,7 +269,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                         Contact
                       </NavLink>
                       <Link
-                        to="/menu?category=cold%20pressed%20juice%20cleans"
+                        to="/menu?category=juice%20cleanse"
                         onClick={() => setIsMenuOpen(false)}
                         className="px-2 py-2 rounded-md tracking-[0.15em] uppercase text-sm text-muted-foreground hover:bg-muted hover:text-foreground"
                       >

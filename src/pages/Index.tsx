@@ -30,7 +30,7 @@ const Index = () => {
       setFeaturedBowls(bowls.slice(0, 3));
       setFreshJuices(p.filter((i) => i.category === "fresh juice").slice(0, 3));
       setSeaMoss(p.filter((i) => i.category === "sea moss"));
-      setCleanse(p.find((i) => i.category === "cold pressed juice cleans") ?? null);
+      setCleanse(p.find((i) => i.category === "juice cleanse") ?? null);
       const toasts = p.filter((i) => i.category === "toast");
       setAvocadoToast(toasts.find((t) => /avocado/i.test(t.name)) ?? null);
       setFruitToast(toasts.find((t) => /fruit/i.test(t.name)) ?? null);
@@ -158,7 +158,7 @@ const Index = () => {
                 </div>
               </div>
               <Button
-                onClick={() => navigate("/menu?category=cold%20pressed%20juice%20cleans")}
+                onClick={() => navigate("/menu?category=juice%20cleanse")}
                 className="juice-button bg-foreground text-background hover:bg-foreground/90 uppercase text-xs tracking-[0.2em]"
               >
                 View Juice Cleanse <ArrowRight className="ml-2 h-4 w-4" />

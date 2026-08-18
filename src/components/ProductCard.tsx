@@ -36,7 +36,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
     product.category === "protein blends";
   const isColdPressed = product.category === "cold-pressed juice";
   const isBowl = product.category === "bowls";
-  const isCleanse = product.category === "cold pressed juice cleans";
+  const isCleanse = product.category === "juice cleanse";
   const isSeaMoss = product.category === "sea moss";
 
   // Local state for size, cleanse duration, and bowl customizations.
