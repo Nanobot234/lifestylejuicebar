@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      connect_accounts: {
+        Row: {
+          charges_enabled: boolean
+          created_at: string
+          details_submitted: boolean
+          environment: string
+          id: string
+          payouts_enabled: boolean
+          platform_fee_cents: number
+          stripe_account_id: string
+          updated_at: string
+        }
+        Insert: {
+          charges_enabled?: boolean
+          created_at?: string
+          details_submitted?: boolean
+          environment: string
+          id?: string
+          payouts_enabled?: boolean
+          platform_fee_cents?: number
+          stripe_account_id: string
+          updated_at?: string
+        }
+        Update: {
+          charges_enabled?: boolean
+          created_at?: string
+          details_submitted?: boolean
+          environment?: string
+          id?: string
+          payouts_enabled?: boolean
+          platform_fee_cents?: number
+          stripe_account_id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       event_inquiries: {
         Row: {
           company: string | null
