@@ -22,7 +22,12 @@ const ConnectStripe = () => {
     const startOnboarding = async () => {
       setStarting(true);
       try {
-        const environment = getStripeEnvironment();
+        let environment: "live" | "sandbox";
+        try {
+          environment = getStripeEnvironment();
+        } catch {
+          environment = "sandbox";
+        }
         const { data, error } = await supabase.functions.invoke("connect-onboard", {
           body: { environment, returnUrl: `${window.location.origin}/business-dashboard` },
         });
