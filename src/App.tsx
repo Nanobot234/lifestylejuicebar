@@ -53,6 +53,7 @@ function App() {
                 <Route path="/track-order" element={<TrackOrder />} />
                 <Route path="/customer-dashboard" element={<CustomerDashboard />} />
                 <Route path="/business-dashboard" element={<BusinessDashboard />} />
+                <Route path="/connect-stripe" element={<ConnectStripe />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/events" element={<Events />} />
                 <Route path="*" element={<NotFound />} />
