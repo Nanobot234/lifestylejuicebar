@@ -18,6 +18,7 @@ import MyOrders from "./pages/MyOrders";
 import TrackOrder from "./pages/TrackOrder";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import BusinessDashboard from "./pages/BusinessDashboard";
+import ConnectStripe from "./pages/ConnectStripe";
 import Contact from "./pages/Contact";
 import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
