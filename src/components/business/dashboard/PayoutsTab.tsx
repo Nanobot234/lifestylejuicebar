@@ -68,7 +68,7 @@ const PayoutsTab = () => {
     window.location.href = data.url as string;
   };
 
-  const feeLabel = `$${((status?.platformFeeCents ?? 150) / 100).toFixed(2)}`;
+  const feeLabel = `$${((status?.platformFeeCents ?? 100) / 100).toFixed(2)}`;
   const ready = Boolean(status?.chargesEnabled);
 
   return (

@@ -73,6 +73,7 @@ Deno.serve(async (req) => {
           details_submitted: account.details_submitted ?? false,
           charges_enabled: account.charges_enabled ?? false,
           payouts_enabled: account.payouts_enabled ?? false,
+          platform_fee_cents: 100,
           updated_at: new Date().toISOString(),
         },
         { onConflict: "environment" },

@@ -65,7 +65,7 @@ Deno.serve(async (req) => {
       detailsSubmitted: account.details_submitted ?? false,
       chargesEnabled: account.charges_enabled ?? false,
       payoutsEnabled: account.payouts_enabled ?? false,
-      platformFeeCents: row.platform_fee_cents ?? 150,
+      platformFeeCents: row.platform_fee_cents ?? 100,
     });
   } catch (error) {
     console.error("connect-status error:", error);

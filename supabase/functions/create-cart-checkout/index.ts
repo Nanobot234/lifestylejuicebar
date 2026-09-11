@@ -55,7 +55,7 @@ Deno.serve(async (req) => {
     const stripe = createStripeClient(environment);
 
     // Stripe Connect: if the store's payout account is onboarded, route the
-    // payment to it and keep the platform fee (default $1.50) on our account.
+    // payment to it and keep the platform fee (default $1.00) on our account.
     const admin = createClient(
       Deno.env.get("SUPABASE_URL") ?? "",
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "",
@@ -67,7 +67,7 @@ Deno.serve(async (req) => {
       .maybeSingle();
     const connectTransfer = connect?.charges_enabled
       ? {
-          application_fee_amount: Math.max(0, Number(connect.platform_fee_cents ?? 150)),
+          application_fee_amount: Math.max(0, Number(connect.platform_fee_cents ?? 100)),
           transfer_data: { destination: connect.stripe_account_id as string },
         }
       : {};
