@@ -90,6 +90,11 @@ Deno.serve(async (req) => {
     return json({ url: link.url, accountId });
   } catch (error) {
     console.error("connect-onboard error:", error);
-    return json({ error: error instanceof Error ? error.message : String(error) }, 500);
+    const raw = error instanceof Error ? error.message : String(error);
+    // Stripe blocks connected-account creation until the platform profile is completed.
+    const friendly = raw.includes("platform-profile") || raw.includes("responsibilities of managing losses")
+      ? "Stripe still needs the platform profile completed for this account before connected accounts can be created. In the Stripe Dashboard go to Settings > Connect > Platform profile, answer the questions about handling losses and disputes, then try again."
+      : raw;
+    return json({ error: friendly }, 500);
   }
 });
