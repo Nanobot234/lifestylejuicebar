@@ -110,6 +110,18 @@ Deno.serve(async (req) => {
         quantity: 1,
       });
     }
+    // The platform fee is passed on to the customer as its own line item, so the
+    // store still receives the full order total after the fee is deducted.
+    if (platformFeeCents > 0) {
+      lineItems.push({
+        price_data: {
+          currency: "usd",
+          product_data: { name: "Service Fee" },
+          unit_amount: platformFeeCents,
+        },
+        quantity: 1,
+      });
+    }
 
     const session = await stripe.checkout.sessions.create({
       line_items: lineItems,
