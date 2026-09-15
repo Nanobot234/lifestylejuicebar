@@ -65,9 +65,15 @@ Deno.serve(async (req) => {
       .select("stripe_account_id, charges_enabled, platform_fee_cents")
       .eq("environment", environment)
       .maybeSingle();
+    const platformFeeCents = connect?.charges_enabled
+      ? Math.max(0, Number(connect.platform_fee_cents ?? 100))
+      : 0;
+    // `on_behalf_of` makes the connected account the settlement merchant, so
+    // Stripe's processing fees are charged to the store, not the platform.
     const connectTransfer = connect?.charges_enabled
       ? {
-          application_fee_amount: Math.max(0, Number(connect.platform_fee_cents ?? 100)),
+          application_fee_amount: platformFeeCents,
+          on_behalf_of: connect.stripe_account_id as string,
           transfer_data: { destination: connect.stripe_account_id as string },
         }
       : {};
