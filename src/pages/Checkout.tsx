@@ -312,7 +312,7 @@ const Checkout = () => {
                         {cartHasShippable && (
                           <div className="text-xs text-muted-foreground mt-2 space-y-2">
                             <p>
-                              Your cart includes a shippable item (Juice Cleanse or Sea Moss). Shipping is
+                              Your cart includes Sea Moss, Cold-Pressed Juice or Juice Cleanse — choose pickup or shipping. Shipping is
                               calculated from your delivery address and the package weight/service required.
                               For fresh juices, blends, bowls or toast, place a separate pickup or local
                               delivery order.
@@ -320,7 +320,7 @@ const Checkout = () => {
                             <p>
                               <strong>Processing time is separate from shipping/transit time.</strong> Juice
                               Cleanse orders need 3–5 business days to prepare; Sea Moss needs 2 business days
-                              before it ships.
+                              before it ships or is ready for pickup.
                             </p>
                           </div>
                         )}
