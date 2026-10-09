@@ -12,6 +12,7 @@ export default function LiveOrderTicket({ order, now, highlighted, busy, onAdvan
   const details = order.orderDetails;
   const notes = (details as Order["orderDetails"] & { notes?: string }).notes;
   const minutes = Math.max(0, Math.floor((now - Date.parse(order.createdAt)) / 60000));
+  const age = minutes < 1 ? "Just now" : minutes < 60 ? `${minutes} min` : minutes < 1440 ? `${Math.floor(minutes / 60)}h ${minutes % 60}m` : `${Math.floor(minutes / 1440)} days`;
   const next = nextOrderStatus(order.status);
   const action = order.status === "pending" ? "Start preparing" : order.status === "preparing" ? "Mark ready" : details.deliveryMethod === "shipping" ? "Mark shipped" : "Complete order";
   return (
@@ -19,7 +20,7 @@ export default function LiveOrderTicket({ order, now, highlighted, busy, onAdvan
       <div className="border-b border-border p-5">
         <div className="flex flex-wrap items-center justify-between gap-2 text-sm font-semibold">
           <span className={`order-status-${order.status} rounded px-2.5 py-1`}>{labels[order.status]}</span>
-          <span className="flex items-center gap-1.5 text-muted-foreground"><Clock className="size-4" />{minutes < 1 ? "Just now" : `${minutes} min`}</span>
+          <span className="flex items-center gap-1.5 text-muted-foreground"><Clock className="size-4" />{age}</span>
         </div>
         <h2 className="mt-4 break-words text-3xl font-bold">#{order.orderNumber ?? order.id.slice(-6)}</h2>
         <p className="mt-1 break-words text-xl font-semibold">{details.name || "Guest customer"}</p>

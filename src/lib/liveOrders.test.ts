@@ -1,3 +1,4 @@
+/// <reference types="bun" />
 import { describe, expect, test } from "bun:test";
 import type { Order } from "@/types";
 import { isLiveOrder, newlyArrivedOrders, nextOrderStatus, sortLiveOrders } from "./liveOrders";
