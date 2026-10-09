@@ -279,25 +279,23 @@ const Checkout = () => {
                             value={field.value}
                             className="flex flex-wrap gap-4"
                           >
+                            <FormItem className="flex items-center space-x-2">
+                              <FormControl>
+                                <RadioGroupItem value="pickup" />
+                              </FormControl>
+                              <FormLabel className="font-normal cursor-pointer">
+                                PICKUP — order ahead, grab in store
+                              </FormLabel>
+                            </FormItem>
                             {!cartHasShippable && (
-                              <>
-                                <FormItem className="flex items-center space-x-2">
-                                  <FormControl>
-                                    <RadioGroupItem value="pickup" />
-                                  </FormControl>
-                                  <FormLabel className="font-normal cursor-pointer">
-                                    PICKUP — order ahead, grab in store
-                                  </FormLabel>
-                                </FormItem>
-                                <FormItem className="flex items-center space-x-2">
-                                  <FormControl>
-                                    <RadioGroupItem value="delivery" />
-                                  </FormControl>
-                                  <FormLabel className="font-normal cursor-pointer">
-                                    LOCAL DELIVERY (+$3.99)
-                                  </FormLabel>
-                                </FormItem>
-                              </>
+                              <FormItem className="flex items-center space-x-2">
+                                <FormControl>
+                                  <RadioGroupItem value="delivery" />
+                                </FormControl>
+                                <FormLabel className="font-normal cursor-pointer">
+                                  LOCAL DELIVERY (+$3.99)
+                                </FormLabel>
+                              </FormItem>
                             )}
                             {cartHasShippable && (
                               <FormItem className="flex items-center space-x-2">
