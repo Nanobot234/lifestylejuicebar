@@ -2,7 +2,9 @@
 import React from "react";
 import Layout from "@/components/Layout";
 import { useAuth } from "@/context/AuthContext";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Radio } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useBusinessDashboard } from "@/hooks/useBusinessDashboard";
 
@@ -40,7 +42,10 @@ const BusinessDashboard = () => {
   return (
     <Layout>
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-6">Business Dashboard</h1>
+        <div className="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <h1 className="text-3xl font-bold">Business Dashboard</h1>
+          <Button asChild className="h-12"><Link to="/live-orders"><Radio />Open live orders</Link></Button>
+        </div>
 
         {/* Dashboard Summary Cards */}
         <DashboardCards orders={orders} />

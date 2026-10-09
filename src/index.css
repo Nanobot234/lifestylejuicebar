@@ -112,6 +112,41 @@
 }
 
 @layer components {
+  .live-orders {
+    --background: 210 15% 96%;
+    --foreground: 160 12% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 160 12% 12%;
+    --muted: 210 12% 92%;
+    --muted-foreground: 210 8% 38%;
+    --border: 210 12% 85%;
+    --input: 210 12% 80%;
+    --primary: 160 30% 19%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 160 20% 92%;
+    --accent-foreground: 160 30% 19%;
+    --ring: 160 30% 19%;
+    --order-new: 42 95% 60%;
+    --order-preparing: 206 68% 42%;
+    --order-ready: 155 55% 30%;
+    --order-ink: 160 12% 12%;
+    letter-spacing: 0;
+  }
+  .live-orders h1, .live-orders h2 { letter-spacing: 0; }
+  .live-orders .status-summary-pending, .live-orders .order-status-pending {
+    border-color: hsl(var(--order-new));
+    background: hsl(var(--order-new) / 0.15);
+  }
+  .live-orders .status-summary-preparing, .live-orders .order-status-preparing {
+    border-color: hsl(var(--order-preparing));
+    background: hsl(var(--order-preparing) / 0.10);
+    color: hsl(var(--order-preparing));
+  }
+  .live-orders .status-summary-ready, .live-orders .order-status-ready {
+    border-color: hsl(var(--order-ready));
+    background: hsl(var(--order-ready) / 0.10);
+    color: hsl(var(--order-ready));
+  }
   .juice-card {
     @apply relative overflow-hidden rounded-2xl transition-all duration-500 bg-card;
   }

@@ -21,6 +21,10 @@ export default {
 		extend: {
 			colors: {
 				border: 'hsl(var(--border))',
+				'order-new': 'hsl(var(--order-new))',
+				'order-preparing': 'hsl(var(--order-preparing))',
+				'order-ready': 'hsl(var(--order-ready))',
+				'order-ink': 'hsl(var(--order-ink))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
 				background: 'hsl(var(--background))',
