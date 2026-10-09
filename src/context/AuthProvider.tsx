@@ -20,7 +20,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
       try {
         const { data } = await supabase.auth.getSession();
         if (data?.session) {
-          fetchUserProfile(data.session, setCurrentUser, setIsLoading);
+          await fetchUserProfile(data.session, setCurrentUser, setIsLoading);
         }
       } catch (error) {
         console.error("Error checking session:", error);

@@ -5,12 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { Sparkles, Copy, Check } from "lucide-react";
+import { useLocation } from "react-router-dom";
 
 const STORAGE_KEY = "lifestyle1104_promo_dismissed";
 const DELAY_MS = 8000;
 const PROMO_CODE = "WELCOME15";
 
 const PromoPopup = () => {
+  const { pathname } = useLocation();
+  const staffScreen = pathname === "/live-orders" || pathname === "/business-dashboard";
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -19,10 +22,11 @@ const PromoPopup = () => {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
+    if (staffScreen) { setOpen(false); return; }
     if (localStorage.getItem(STORAGE_KEY)) return;
     const t = setTimeout(() => setOpen(true), DELAY_MS);
     return () => clearTimeout(t);
-  }, []);
+  }, [staffScreen]);
 
   const handleClose = (val: boolean) => {
     setOpen(val);

@@ -18,6 +18,7 @@ import MyOrders from "./pages/MyOrders";
 import TrackOrder from "./pages/TrackOrder";
 import CustomerDashboard from "./pages/CustomerDashboard";
 import BusinessDashboard from "./pages/BusinessDashboard";
+import LiveOrders from "./pages/LiveOrders";
 import ConnectStripe from "./pages/ConnectStripe";
 import Contact from "./pages/Contact";
 import Events from "./pages/Events";
@@ -53,6 +54,7 @@ function App() {
                 <Route path="/track-order" element={<TrackOrder />} />
                 <Route path="/customer-dashboard" element={<CustomerDashboard />} />
                 <Route path="/business-dashboard" element={<BusinessDashboard />} />
+                <Route path="/live-orders" element={<LiveOrders />} />
                 <Route path="/connect-stripe" element={<ConnectStripe />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/events" element={<Events />} />
