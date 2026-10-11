@@ -37,13 +37,17 @@ export const createOrder = async (userId: string, items: CartItem[], orderDetail
     
     // After successfully creating the order, create order items
     if (items.length > 0) {
+      // Cart IDs may carry a variant suffix (e.g. "<uuid>-16oz"); keep only the product UUID.
+      const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/i;
       const orderItemsToInsert = items.map(item => {
+        const rawId = String(item.id);
+        const productId = rawId.match(UUID_RE)?.[0] ?? rawId;
         return {
           order_id: order.id,
-          product_id: item.id, // use product UUID (string) directly
+          product_id: productId,
           quantity: item.quantity,
           price_at_purchase: item.price,
-          special_instructions: null
+          special_instructions: productId !== rawId ? item.name : null
         };
       });
       
