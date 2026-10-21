@@ -392,7 +392,7 @@ const Index = () => {
       <section className="container mx-auto px-4 py-24 text-center">
         <span className="text-[11px] tracking-[0.35em] text-muted-foreground uppercase">Ready?</span>
         <h2 className="font-display text-4xl md:text-6xl mt-3 mb-6 text-foreground">SIP THE DIFFERENCE.</h2>
-        <p className="text-muted-foreground max-w-xl mx-auto mb-8">Order ahead for pickup or delivery. Your daily glow is one tap away.</p>
+        <p className="text-muted-foreground max-w-xl mx-auto mb-8">Order ahead for pickup or delivery. Your next favorite blend is one tap away.</p>
         <Button
           onClick={() => navigate("/menu")}
           className="juice-button bg-foreground text-background hover:bg-foreground/90 uppercase text-xs tracking-[0.2em]"
