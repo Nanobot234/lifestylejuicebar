@@ -16,7 +16,10 @@ import {
   AlertDialogTitle,
   AlertDialogAction
 } from "@/components/ui/alert-dialog";
-import { deleteProduct } from "@/services/productsService";
+import { deleteProduct, updateProductStoreSettings } from "@/services/productsService";
+import { Switch } from "@/components/ui/switch";
+import { Input } from "@/components/ui/input";
+import { isLocationPriced, STORES, type StoreId } from "@/lib/stores";
 
 interface ProductsGridProps {
   products: Product[];
@@ -56,6 +59,30 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products, onProductsChanged
     }
   };
 
+  // Flip available/sold out for one store and save immediately.
+  const toggleSoldOut = async (product: Product, store: StoreId, available: boolean) => {
+    const field = store === "bronx" ? "sold_out_bronx" : "sold_out_manhattan";
+    const ok = await updateProductStoreSettings(product.id, { [field]: !available });
+    if (ok) {
+      toast.success(`${product.name} ${available ? "available" : "sold out"} at ${store === "bronx" ? "Bronx" : "Manhattan"}`);
+      onProductsChanged();
+    } else toast.error("Could not update availability");
+  };
+
+  // Save a store-specific price for smoothies/juices (blank = use base price).
+  const saveStorePrice = async (product: Product, store: StoreId, value: string) => {
+    const num = value.trim() === "" ? null : Number(value);
+    if (num !== null && (isNaN(num) || num < 0)) return toast.error("Enter a valid price");
+    const field = store === "bronx" ? "price_bronx" : "price_manhattan";
+    const current = store === "bronx" ? product.priceBronx : product.priceManhattan;
+    if ((current ?? null) === num) return;
+    const ok = await updateProductStoreSettings(product.id, { [field]: num });
+    if (ok) {
+      toast.success(`${product.name} price updated`);
+      onProductsChanged();
+    } else toast.error("Could not update price");
+  };
+
   if (products.length === 0) {
     return <div className="text-gray-500 py-8 text-center">No products created yet.</div>;
   }
@@ -91,7 +118,40 @@ const ProductsGrid: React.FC<ProductsGridProps> = ({ products, onProductsChanged
             </div>
             <div className="text-xs text-gray-600 mb-2">{product.category}</div>
             <div className="font-bold mb-2">${product.price?.toFixed(2)}</div>
-            <div className="text-gray-700 text-sm mb-1">{product.description}</div>
+            <div className="text-gray-700 text-sm mb-3">{product.description}</div>
+            <div className="border-t pt-3 space-y-2">
+              {STORES.map((st) => {
+                const soldOut = st.id === "bronx" ? product.soldOutBronx : product.soldOutManhattan;
+                const storePrice = st.id === "bronx" ? product.priceBronx : product.priceManhattan;
+                return (
+                  <div key={st.id} className="flex items-center justify-between gap-2">
+                    <label className="flex items-center gap-2 text-sm">
+                      <Switch
+                        checked={!soldOut}
+                        onCheckedChange={(v) => toggleSoldOut(product, st.id, v)}
+                        aria-label={`${product.name} available at ${st.label}`}
+                      />
+                      <span>
+                        {st.label}: <strong>{soldOut ? "Sold out" : "Available"}</strong>
+                      </span>
+                    </label>
+                    {isLocationPriced(product.category) && (
+                      <Input
+                        key={`${product.id}-${st.id}-${storePrice ?? ""}`}
+                        type="number"
+                        step="0.01"
+                        min="0"
+                        defaultValue={storePrice ?? ""}
+                        placeholder={product.price.toFixed(2)}
+                        aria-label={`${product.name} price at ${st.label}`}
+                        className="w-20 h-8 text-sm"
+                        onBlur={(e) => saveStorePrice(product, st.id, e.target.value)}
+                      />
+                    )}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         ))}
       </div>
