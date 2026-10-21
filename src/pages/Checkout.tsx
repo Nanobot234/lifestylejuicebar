@@ -34,6 +34,8 @@ import { DeliveryMethod, PaymentMethod } from "@/types";
 import { toast } from "sonner";
 import { calculateShipping, hasShippableItems, US_STATES } from "@/lib/shipping";
 import StripeEmbeddedCheckout from "@/components/StripeEmbeddedCheckout";
+import { useStoreLocation } from "@/context/StoreLocationContext";
+import { STORES, CLOSED_NOTE } from "@/lib/stores";
 
 // Store locations shown on the checkout pickup selector with Google Maps directions.
 const PICKUP_LOCATIONS = [
@@ -41,12 +43,14 @@ const PICKUP_LOCATIONS = [
     id: "bronx",
     label: "Bronx",
     address: "6 E. 167th St., Bronx, NY",
+    hours: STORES[0].hours,
     mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("6 E. 167th St., Bronx, NY"),
   },
   {
     id: "manhattan",
     label: "Manhattan",
     address: "411 W. 35th St., New York, NY",
+    hours: STORES[1].hours,
     mapsUrl: "https://www.google.com/maps/dir/?api=1&destination=" + encodeURIComponent("411 W. 35th St., New York, NY"),
   },
 ];
@@ -81,6 +85,14 @@ const Checkout = () => {
     }
   }, [cartItems.length, navigate]);
 
+  const { store } = useStoreLocation();
+  // Smoothies/juices are priced for one store; pickup must happen at that store.
+  const lockedStore = cartItems.some((i) => String(i.id).endsWith("-bronx"))
+    ? "bronx"
+    : cartItems.some((i) => String(i.id).endsWith("-manhattan"))
+    ? "manhattan"
+    : null;
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -92,7 +104,7 @@ const Checkout = () => {
       state: "",
       zip: "",
       deliveryMethod: cartHasShippable ? "shipping" : "pickup",
-      pickupLocation: "bronx",
+      pickupLocation: lockedStore ?? store ?? "bronx",
       paymentMethod: "card",
       notes: "",
     },
@@ -367,13 +379,24 @@ const Checkout = () => {
                                   className="flex items-start justify-between gap-3 p-3 bg-white rounded-md border"
                                 >
                                   <div className="flex items-start space-x-3">
-                                    <RadioGroupItem value={loc.id} id={`pickup-${loc.id}`} className="mt-1" />
+                                    <RadioGroupItem
+                                      value={loc.id}
+                                      id={`pickup-${loc.id}`}
+                                      className="mt-1"
+                                      disabled={!!lockedStore && lockedStore !== loc.id}
+                                    />
                                     <label
                                       htmlFor={`pickup-${loc.id}`}
                                       className="cursor-pointer"
                                     >
                                       <div className="font-medium">{loc.label}</div>
                                       <div className="text-sm text-muted-foreground">📍 {loc.address}</div>
+                                      <div className="text-xs text-muted-foreground">{loc.hours} · {CLOSED_NOTE}</div>
+                                      {lockedStore && lockedStore !== loc.id && (
+                                        <div className="text-xs text-muted-foreground">
+                                          Your blends/juices are priced for the other store.
+                                        </div>
+                                      )}
                                     </label>
                                   </div>
                                   <a
