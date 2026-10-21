@@ -81,7 +81,7 @@ const Index = () => {
       {/* Marquee-style values */}
       <section className="border-y border-border bg-muted/40 py-6 overflow-hidden">
         <div className="container mx-auto px-4 flex flex-wrap justify-around gap-y-3 items-center text-foreground">
-          {["Cold-Pressed", "Whole Ingredients", "No Added Sugar", "Made Daily", "Locally Sourced"].map((t) => (
+          {["Cold-Pressed", "Fresh Fruit", "Bold Flavor", "Made Daily", "Locally Sourced"].map((t) => (
             <span key={t} className="font-display text-sm md:text-base tracking-[0.3em]">
               ✦ {t.toUpperCase()}
             </span>
@@ -338,12 +338,12 @@ const Index = () => {
             <span className="text-[11px] tracking-[0.35em] text-background/60 uppercase">The Philosophy</span>
             <h2 className="font-display text-4xl md:text-5xl mt-2 mb-6">A LIFESTYLE,<br /><em className="italic font-serif font-normal text-background/80">not a trend.</em></h2>
             <p className="text-background/70 leading-relaxed mb-6">
-              Lifestyle 1104 was built on a simple idea: feeling good shouldn't be complicated. Every cup is crafted with intention — real fruit, real vegetables, real nutrition.
+              Lifestyle 1104 was built on a simple idea: great taste shouldn't be complicated. Every cup is crafted with intention — real fruit, real vegetables, real flavor.
             </p>
             <div className="grid grid-cols-3 gap-6 mt-10">
               <div>
                 <Leaf className="h-6 w-6 mb-3 text-background/80" />
-                <p className="text-xs tracking-[0.15em] uppercase text-background/60">Whole<br />Ingredients</p>
+                <p className="text-xs tracking-[0.15em] uppercase text-background/60">Fresh<br />Produce</p>
               </div>
               <div>
                 <Sparkles className="h-6 w-6 mb-3 text-background/80" />
@@ -356,31 +356,31 @@ const Index = () => {
             </div>
           </div>
           <div>
-            <span className="text-[11px] tracking-[0.35em] text-background/60 uppercase">Why It Matters</span>
-            <h3 className="font-display text-3xl md:text-4xl mt-2 mb-8">REAL FOOD.<br />REAL RESULTS.</h3>
+            <span className="text-[11px] tracking-[0.35em] text-background/60 uppercase">What's Inside</span>
+            <h3 className="font-display text-3xl md:text-4xl mt-2 mb-8">REAL INGREDIENTS.<br />REAL FLAVOR.</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-background/5 border border-background/15 p-6 rounded-2xl">
-                <h4 className="font-display text-base mb-2 tracking-wide">ENERGY</h4>
+                <h4 className="font-display text-base mb-2 tracking-wide">FRESH FRUIT</h4>
                 <p className="text-background/70 text-sm leading-relaxed">
-                  Fresh juices provide an instant boost of vitamins and minerals that help fight fatigue and increase your energy levels naturally.
+                  Mango, pineapple, strawberries and berries — sweet, juicy and bright.
                 </p>
               </div>
               <div className="bg-background/5 border border-background/15 p-6 rounded-2xl">
-                <h4 className="font-display text-base mb-2 tracking-wide">DIGESTION</h4>
+                <h4 className="font-display text-base mb-2 tracking-wide">GARDEN GREENS</h4>
                 <p className="text-background/70 text-sm leading-relaxed">
-                  The enzymes in fresh juice aid digestion and help your body absorb nutrients more effectively.
+                  Kale, spinach, celery and cucumber for a crisp, clean taste.
                 </p>
               </div>
               <div className="bg-background/5 border border-background/15 p-6 rounded-2xl">
-                <h4 className="font-display text-base mb-2 tracking-wide">GLOW</h4>
+                <h4 className="font-display text-base mb-2 tracking-wide">BOLD SPICE</h4>
                 <p className="text-background/70 text-sm leading-relaxed">
-                  Antioxidants in fresh juices help combat free radicals, leading to clearer, more radiant skin.
+                  Ginger, lemon and lime add a zesty kick to every blend.
                 </p>
               </div>
               <div className="bg-background/5 border border-background/15 p-6 rounded-2xl">
-                <h4 className="font-display text-base mb-2 tracking-wide">IMMUNITY</h4>
+                <h4 className="font-display text-base mb-2 tracking-wide">MADE DAILY</h4>
                 <p className="text-background/70 text-sm leading-relaxed">
-                  Regular consumption of fresh juices strengthens your immune system and helps your body fight off illnesses.
+                  Pressed and blended fresh in our Bronx and Manhattan shops.
                 </p>
               </div>
             </div>
