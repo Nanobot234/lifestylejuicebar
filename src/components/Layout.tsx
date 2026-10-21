@@ -428,6 +428,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   >
                     6 E. 167th St. — Bronx, NY
                   </a>
+                  <p className="text-background/60 text-xs mt-1">Mon–Sat 8 a.m.–8 p.m.</p>
                 </li>
                 <li>
                   <a
@@ -438,7 +439,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   >
                     411 W. 35th St. — New York, NY
                   </a>
+                  <p className="text-background/60 text-xs mt-1">Mon–Sat 8 a.m.–7 p.m.</p>
                 </li>
+                <li className="text-background/60 text-xs">Closed Sundays</li>
               </ul>
               <p className="text-background/80 mb-2 text-sm">Follow us on Instagram</p>
               <a href="https://www.instagram.com/lifestyle1104juicebar" target="_blank" rel="noopener noreferrer" className="text-background underline underline-offset-4 text-sm">@lifestyle1104juicebar</a>

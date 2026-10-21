@@ -28,10 +28,12 @@ const formSchema = z.object({
 const LOCATIONS = [
   {
     label: "6 E. 167th St., Bronx, NY",
+    hours: "Mon–Sat 8 a.m.–8 p.m.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=6+E+167th+St,+Bronx,+NY",
   },
   {
     label: "411 W. 35th St., New York, NY",
+    hours: "Mon–Sat 8 a.m.–7 p.m.",
     mapsUrl: "https://www.google.com/maps/search/?api=1&query=411+W+35th+St,+New+York,+NY",
   },
 ];
@@ -109,16 +111,19 @@ const Contact = () => {
                     </h3>
                     <div className="space-y-2">
                       {LOCATIONS.map((location) => (
-                        <a
-                          key={location.label}
-                          href={location.mapsUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="block text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4 text-sm"
-                        >
-                          {location.label}
-                        </a>
+                        <div key={location.label}>
+                          <a
+                            href={location.mapsUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="block text-muted-foreground hover:text-foreground transition-colors underline underline-offset-4 text-sm"
+                          >
+                            {location.label}
+                          </a>
+                          <p className="text-xs text-muted-foreground">{location.hours}</p>
+                        </div>
                       ))}
+                      <p className="text-xs text-muted-foreground">Closed Sundays</p>
                     </div>
                   </div>
                 </div>

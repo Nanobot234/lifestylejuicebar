@@ -8,6 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
 import { fetchProducts } from "@/services/productsService";
+import StorePicker from "@/components/StorePicker";
 
 const Menu = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -77,6 +78,7 @@ const Menu = () => {
             />
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
           </div>
+          <StorePicker />
         </div>
       </section>
 
