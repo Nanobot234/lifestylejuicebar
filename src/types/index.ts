@@ -9,6 +9,10 @@ export interface Product {
   ingredients: string[];
   benefits: string[];
   isShippable?: boolean;
+  priceBronx?: number | null;
+  priceManhattan?: number | null;
+  soldOutBronx?: boolean;
+  soldOutManhattan?: boolean;
 }
 
 export interface CartItem extends Product {

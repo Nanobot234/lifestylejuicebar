@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AuthProvider from "./context/AuthProvider";
 import { CartProvider } from "./context/CartContext";
+import { StoreLocationProvider } from "./context/StoreLocationContext";
 import Index from "./pages/Index";
 import Menu from "./pages/Menu";
 import Cart from "./pages/Cart";
@@ -35,6 +36,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <AuthProvider>
+          <StoreLocationProvider>
           <CartProvider>
             <Toaster />
             <BrowserRouter>
@@ -62,6 +64,7 @@ function App() {
               </Routes>
             </BrowserRouter>
           </CartProvider>
+          </StoreLocationProvider>
         </AuthProvider>
       </TooltipProvider>
     </QueryClientProvider>

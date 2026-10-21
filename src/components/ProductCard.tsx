@@ -7,6 +7,8 @@ import { useCart } from "@/context/CartContext";
 import { Product } from "@/types";
 import { cn } from "@/lib/utils";
 import { productImageAlt } from "@/lib/imageAlt";
+import { useStoreLocation } from "@/context/StoreLocationContext";
+import { isSoldOut, priceForStore, STORES } from "@/lib/stores";
 
 type JuiceSize = "16oz" | "24oz";
 const SIZE_UPCHARGE: Record<JuiceSize, number> = { "16oz": 0, "24oz": 2 };
@@ -28,6 +30,10 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
   const { addToCart } = useCart();
+  const { store } = useStoreLocation();
+  const basePrice = priceForStore(product, store);
+  const soldOut = isSoldOut(product, store);
+  const storeLabel = STORES.find((s) => s.id === store)?.label;
 
   // Determine which customization UI this product needs based on category.
   const hasSizes =
@@ -47,11 +53,13 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
   const [customizeOpen, setCustomizeOpen] = useState(false);
 
   // Calculate the price shown to the user, accounting for size/cleanse options.
-  const displayPrice = hasSizes
-    ? product.price + SIZE_UPCHARGE[size]
+  const displayPrice = basePrice === null
+    ? null
+    : hasSizes
+    ? basePrice + SIZE_UPCHARGE[size]
     : isCleanse
     ? CLEANSE_PRICE[cleanseDays]
-    : product.price;
+    : basePrice;
 
   // Toggle a bowl topping or drizzle in/out of a selected list.
   const toggle = (list: string[], setList: (v: string[]) => void, item: string) => {
@@ -60,12 +68,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
 
   // Build the final cart item (with customizations) and add it to the cart.
   const handleAddToCart = () => {
+    if (soldOut || basePrice === null) return;
     if (hasSizes) {
       addToCart({
         ...product,
-        id: `${product.id}-${size}`,
-        name: `${product.name} (${size})`,
-        price: product.price + SIZE_UPCHARGE[size],
+        id: `${product.id}-${size}-${store}`,
+        name: `${product.name} (${size}, ${storeLabel})`,
+        price: basePrice + SIZE_UPCHARGE[size],
+      });
+    } else if (isColdPressed) {
+      addToCart({
+        ...product,
+        id: `${product.id}-${store}`,
+        name: `${product.name} (${storeLabel})`,
+        price: basePrice,
       });
     } else if (isCleanse) {
       const cleansePrice = CLEANSE_PRICE[cleanseDays];
@@ -107,11 +123,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
         <span className="absolute top-3 left-3 text-[10px] tracking-[0.25em] uppercase bg-background/80 backdrop-blur-sm text-foreground px-3 py-1 rounded-full">
           {product.category}
         </span>
+        {soldOut && (
+          <span className="absolute top-3 right-3 text-[10px] tracking-[0.25em] uppercase bg-foreground text-background px-3 py-1 rounded-full">
+            Sold out{storeLabel ? ` · ${storeLabel}` : ""}
+          </span>
+        )}
       </div>
       <CardContent className="pt-5 px-1 flex-grow">
         <div className="flex justify-between items-baseline mb-2 gap-3">
           <h3 className="font-display text-xl tracking-wide text-foreground">{product.name.toUpperCase()}</h3>
-          <span className="font-medium text-foreground whitespace-nowrap">${displayPrice.toFixed(2)}</span>
+          <span className="font-medium text-foreground whitespace-nowrap">
+            {displayPrice === null ? (
+              <span className="text-xs text-muted-foreground">Choose a store for price</span>
+            ) : (
+              `$${displayPrice.toFixed(2)}`
+            )}
+          </span>
         </div>
         <p className="text-muted-foreground text-sm leading-relaxed">{product.description}</p>
         {hasSizes && (
@@ -236,10 +263,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, className }) => {
       </CardContent>
       <CardFooter className="pt-4 px-1">
         <Button 
-          onClick={handleAddToCart} 
+          onClick={handleAddToCart}
+          disabled={soldOut || basePrice === null}
           className="w-full bg-foreground text-background hover:bg-foreground/90 rounded-full py-6 tracking-[0.15em] text-xs uppercase"
         >
-          <Plus className="mr-2 h-4 w-4" /> Add to Order
+          {soldOut ? (
+            "Sold Out"
+          ) : basePrice === null ? (
+            "Choose a store above"
+          ) : (
+            <>
+              <Plus className="mr-2 h-4 w-4" /> Add to Order
+            </>
+          )}
         </Button>
       </CardFooter>
     </Card>

@@ -1,0 +1,1 @@
+ALTER TABLE public.products ADD COLUMN IF NOT EXISTS price_bronx numeric, ADD COLUMN IF NOT EXISTS price_manhattan numeric, ADD COLUMN IF NOT EXISTS sold_out_bronx boolean NOT NULL DEFAULT false, ADD COLUMN IF NOT EXISTS sold_out_manhattan boolean NOT NULL DEFAULT false;

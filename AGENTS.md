@@ -3,4 +3,4 @@
 - Load live tickets with a joined orders/items query and invalidate it from effect-scoped Realtime subscriptions plus polling so concurrent order and item changes converge safely.
 - Update live order statuses with a compare-and-set against the current status so simultaneous staff actions cannot silently overwrite each other.
 - Keep live queue ordering and status progression in a pure utility with tests so multiple incoming tickets follow a deterministic workflow.
-- Await restored account details before completing authentication loading so direct protected-page visits do not redirect signed-in staff prematurely.
+- Await restored account details before completing authentication loading so direct protected-page visits do not redirect signed-in staff prematurely.- Keep store hours, location-priced categories, and per-store price/sold-out rules in a pure tested utility so menu, checkout and dashboard agree.

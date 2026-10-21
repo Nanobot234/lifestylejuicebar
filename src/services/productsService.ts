@@ -42,7 +42,11 @@ export async function fetchProducts(): Promise<Product[]> {
     category: row.category ?? "other",
     ingredients: [], // Could be extended in schema
     benefits: [], // Could be extended in schema
-    isShippable: (row as { is_shippable?: boolean }).is_shippable ?? false,
+    isShippable: row.is_shippable ?? false,
+    priceBronx: row.price_bronx != null ? Number(row.price_bronx) : null,
+    priceManhattan: row.price_manhattan != null ? Number(row.price_manhattan) : null,
+    soldOutBronx: row.sold_out_bronx ?? false,
+    soldOutManhattan: row.sold_out_manhattan ?? false,
   }));
 
   // Cold-pressed juices are numbered on the bottle — display in that order.
@@ -123,6 +127,21 @@ export async function deleteProduct(productId: string): Promise<boolean> {
   
   if (error) {
     console.error("Error deleting product:", error);
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Update per-store availability and prices (business owner only).
+ */
+export async function updateProductStoreSettings(
+  id: string,
+  fields: Partial<{ sold_out_bronx: boolean; sold_out_manhattan: boolean; price_bronx: number | null; price_manhattan: number | null }>
+): Promise<boolean> {
+  const { error } = await supabase.from("products").update(fields).eq("id", id);
+  if (error) {
+    console.error("Error updating store settings:", error);
     return false;
   }
   return true;
