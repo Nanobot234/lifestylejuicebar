@@ -204,6 +204,10 @@ export type Database = {
           is_shippable: boolean
           name: string
           price: number
+          price_bronx: number | null
+          price_manhattan: number | null
+          sold_out_bronx: boolean
+          sold_out_manhattan: boolean
           updated_at: string
         }
         Insert: {
@@ -215,6 +219,10 @@ export type Database = {
           is_shippable?: boolean
           name: string
           price: number
+          price_bronx?: number | null
+          price_manhattan?: number | null
+          sold_out_bronx?: boolean
+          sold_out_manhattan?: boolean
           updated_at?: string
         }
         Update: {
@@ -226,6 +234,10 @@ export type Database = {
           is_shippable?: boolean
           name?: string
           price?: number
+          price_bronx?: number | null
+          price_manhattan?: number | null
+          sold_out_bronx?: boolean
+          sold_out_manhattan?: boolean
           updated_at?: string
         }
         Relationships: []
